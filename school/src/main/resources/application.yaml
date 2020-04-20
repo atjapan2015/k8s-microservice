@@ -5,8 +5,32 @@ server:
 spring:
   application:
     name: school
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+      idle-timeout: 600000
+      auto-commit: true
+      pool-name: hikaricppool
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1 FROM DUAL
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
 logging:
   file:
     name: /tmp/logs/school.log
   level:
     org.springframework.web: DEBUG
+mybatis:
+  type-aliases-package: com.microservice.school.entity # entity class path
+  mapper-locations: classpath:mapper/*.xml

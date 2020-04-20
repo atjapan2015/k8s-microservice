@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package com.microservice.teacher;
+package com.microservice.teacher.controller;
 
 import java.util.Collections;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
+import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -63,6 +65,13 @@ public class TeacherResource {
      * The greeting message provider.
      */
     private final TeacherProvider teacherProvider;
+
+    /**
+     * DataSource
+     */
+    @Inject
+    @Named("teacher")
+    private DataSource teacherDataSource;
 
     /**
      * Using constructor injection to get a configuration property.
