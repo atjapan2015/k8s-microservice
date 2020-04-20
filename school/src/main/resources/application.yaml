@@ -1,0 +1,12 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /school
+spring:
+  application:
+    name: school
+logging:
+  file:
+    name: /tmp/logs/school.log
+  level:
+    org.springframework.web: DEBUG

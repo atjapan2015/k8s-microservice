@@ -1,0 +1,17 @@
+app:
+  greeting: Hello
+server:
+  port: 8098
+  host: 0.0.0.0
+logging:
+  outputs:
+    console:
+      pattern: simple.colored
+      level: INFO
+    file:
+      pattern: verbose.colored
+      level: DEBUG
+      name: /tmp/logs/teacher.log
+  level: INFO
+  app.level: DEBUG
+  com.oracle.prime.level: WARN
