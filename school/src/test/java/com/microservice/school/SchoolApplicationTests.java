@@ -1,7 +1,7 @@
 package com.microservice.school;
 
 import com.microservice.school.entity.Emp;
-import com.microservice.school.mapper.EmpExtMapper;
+import com.microservice.school.mapper.EmpMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import java.util.List;
 class SchoolApplicationTests {
 
     @Autowired
-    private EmpExtMapper empExtMapper;
+    private EmpMapper empMapper;
 
     @Test
     void contextLoads() {
@@ -26,7 +26,7 @@ class SchoolApplicationTests {
     @Test
     public void testSelectEmp() {
         System.out.println(("----- selectAll method test ------"));
-        List<Emp> empList = empExtMapper.selectList(null);
+        List<Emp> empList = empMapper.selectList(null);
         Assert.assertEquals(14, empList.size());
         empList.forEach(System.out::println);
     }
