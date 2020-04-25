@@ -5,7 +5,6 @@ import com.microservice.school.entity.TUser;
 import com.microservice.school.entity.ext.TUserExt;
 import com.microservice.school.mapper.TUserMapper;
 import com.microservice.school.mapper.ext.TUserExtMapper;
-import oracle.ucp.tuners.Tunable;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

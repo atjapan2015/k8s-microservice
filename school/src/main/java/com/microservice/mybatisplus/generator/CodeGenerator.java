@@ -1,17 +1,24 @@
 package com.microservice.mybatisplus.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import oracle.security.crypto.core.Padding;
 
+import javax.xml.datatype.DatatypeConstants;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,6 +56,8 @@ public class CodeGenerator {
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         gc.setFileOverride(true); // 是否覆盖文件
+        // gc.setIdType(IdType.NONE);
+        // gc.setDateType(DateType.ONLY_DATE);
         gc.setActiveRecord(true); // 开启 activeRecord 模式
         gc.setEnableCache(false); // XML 二级缓存
         gc.setBaseResultMap(true); // XML ResultMap
@@ -74,7 +83,8 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
+        // pc.setModuleName(scanner("模块名"));
+        pc.setModuleName("school");
         pc.setParent("com.microservice");
         mpg.setPackageInfo(pc);
 
@@ -141,6 +151,11 @@ public class CodeGenerator {
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
+        strategy.setLogicDeleteFieldName("deleted");
+        strategy.setVersionFieldName("version");
+        TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
+        TableFill updateTime = new TableFill("update_time", FieldFill.INSERT_UPDATE);
+        strategy.setTableFillList(Arrays.asList(createTime,updateTime));
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
