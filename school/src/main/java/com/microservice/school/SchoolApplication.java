@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 // @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
-@MapperScan(value = "com.microservice.school.mapper")
 public class SchoolApplication {
 
     public static void main(String[] args) {

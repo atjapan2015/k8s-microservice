@@ -6,8 +6,11 @@ spring:
   application:
     name: school
   datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@${DB_URL}
+    # driver-class-name: oracle.jdbc.OracleDriver
+    # url: jdbc:oracle:thin:@${DB_URL}
+    # p6spy, output consume time, don't use at production environment
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:oracle:thin:@${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     hikari:
@@ -26,6 +29,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.Oracle10gDialect
+  profiles:
+    active: dev
 logging:
   file:
     name: /tmp/logs/school.log
@@ -34,3 +39,10 @@ logging:
 mybatis:
   type-aliases-package: com.microservice.school.entity # entity class path
   mapper-locations: classpath:mapper/*.xml
+# logging, don't use at production environment
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted  #全局逻辑删除字段值
