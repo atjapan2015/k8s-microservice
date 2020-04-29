@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.k8scloud.course.mapper.TUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.k8scloud.course.entity.TUser">
+        <id column="ID" property="id" />
+        <result column="NAME" property="name" />
+        <result column="AGE" property="age" />
+        <result column="EMAIL" property="email" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="VERSION" property="version" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, NAME, AGE, EMAIL, CREATE_TIME, UPDATE_TIME, VERSION, DELETED
+    </sql>
+
+</mapper>

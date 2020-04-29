@@ -1,0 +1,28 @@
+app:
+  greeting: Hello
+server:
+  port: 8099
+  host: 0.0.0.0
+javax:
+  sql:
+    DataSource:
+      student:
+        dataSourceClassName: oracle.jdbc.pool.OracleDataSource
+        dataSource:
+          url: jdbc:oracle:thin:@${DB_URL}
+          user: ${DB_USER}
+          password: ${DB_PASSWORD}
+        maximumPoolSize: 2
+        minimumIdle: 1
+logging:
+  outputs:
+    console:
+      pattern: simple.colored
+      level: INFO
+    file:
+      pattern: verbose.colored
+      level: DEBUG
+      name: /tmp/logs/student.log
+  level: INFO
+  app.level: DEBUG
+  com.oracle.prime.level: WARN

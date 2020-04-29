@@ -37,7 +37,7 @@ logging:
   level:
     org.springframework.web: DEBUG
 mybatis:
-  type-aliases-package: com.microservice.school.entity # entity class path
+  type-aliases-package: site.k8scloud.school.entity # entity class path
   mapper-locations: classpath:mapper/*.xml
 # logging, don't use at production environment
 mybatis-plus:
